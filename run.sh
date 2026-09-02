@@ -3,4 +3,4 @@ PJRT_DEVICE=TPU torchrun \
   --standalone \
   --nnodes=1 \
   --nproc_per_node=8 \
-  train.py
+  train_tpu.py
