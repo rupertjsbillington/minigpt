@@ -15,7 +15,7 @@ n_layer = 12
 n_head = 8
 n_embd = 512
 bias = True
-dropout = 0.0
+dropout = 0.1
 
 # effective batch: 4 * 30 * 1024 = 122,880 tokens/iter
 batch_size = 4
