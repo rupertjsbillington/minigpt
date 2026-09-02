@@ -38,12 +38,12 @@ beta2 = 0.95
 grad_clip = 1.0
 
 # checkpointing behaviour
-save_interval = 1            # save every step; previous step file is deleted
+save_interval = 500          # save every 500 steps; previous step file is deleted
 keep_best = True             # keep a non-deleted best.pt on val-loss improvement
 
 # eval stuff
 eval_interval = 500
-eval_iters = 8
+eval_iters = 128
 log_interval = 1
 
 # system
