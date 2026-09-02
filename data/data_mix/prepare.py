@@ -87,18 +87,6 @@ SCRIPT_DIR = (
     else os.getcwd()
 )
 
-CACHE_DIRS = {
-    "codelion/finepdfs-1B": os.path.abspath(
-        os.path.join(SCRIPT_DIR, "..", "finepdfs-1B")
-    ),
-    "codelion/dclm-baseline-1B": os.path.abspath(
-        os.path.join(SCRIPT_DIR, "..", "dclm-baseline-1B")
-    ),
-    "codelion/fineweb-edu-1B": os.path.abspath(
-        os.path.join(SCRIPT_DIR, "..", "fineweb-edu-1B")
-    ),
-}
-
 RAW_DIR = os.path.join(SCRIPT_DIR, "raw")
 
 # ---------------------------------------------------------------------------
@@ -166,9 +154,6 @@ class TokenCounter:
 def prepare_dirs():
     os.makedirs(RAW_DIR, exist_ok=True)
     os.makedirs(TRAIN_BIN_DIR, exist_ok=True)
-    for path in CACHE_DIRS.values():
-        os.makedirs(path, exist_ok=True)
-
 
 def clean_outputs():
     """
@@ -274,7 +259,6 @@ def process_dataset_to_temp(
         name,
         split="train",
         streaming=True,
-        cache_dir=CACHE_DIRS[name],
     )
 
     tokens_written = 0
