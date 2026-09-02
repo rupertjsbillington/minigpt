@@ -1,3 +1,6 @@
+transformers==5.15.1
+torch==2.13.0
 datasets==4.8.4
 numpy==2.5.2
 tiktoken==0.14.0
+wandb==0.29.0

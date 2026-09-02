@@ -1,1 +1,4 @@
 /data/data_mix/raw
+/__pycache__
+*.pkl
+*.bin
