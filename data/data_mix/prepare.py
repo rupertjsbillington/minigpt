@@ -75,7 +75,7 @@ BIN_SHARD_TOKEN_LIMIT = 100_000_000
 
 # Tokens held out for validation (taken from the head of the already
 # globally-shuffled stream, which is statistically equivalent to the tail).
-VAL_TOKENS = 3_072_000
+VAL_TOKENS = 1_638_400
 
 # tiktoken's Rust core releases the GIL, so threads speed up re-tokenization
 # while pool.map keeps the shuffled stream order deterministic.

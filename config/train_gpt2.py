@@ -17,19 +17,19 @@ n_embd = 512
 bias = True
 dropout = 0.1
 
-# effective batch: 4 * 32 * 1024 = 131,072 tokens/iter
-batch_size = 4
+# effective batch: 8 * 16 * 1024 = 131,072 tokens/iter
+batch_size = 8
 block_size = 1024
-gradient_accumulation_steps = 32
+gradient_accumulation_steps = 16
 
-# 1B tokens / 131,072 tokens per iter = 8,160 iterations
-max_iters = 8160
-lr_decay_iters = 8160
+# 1B tokens / 131,072 tokens per iter = 7,616 iterations
+max_iters = 7616
+lr_decay_iters = 7616
 
 # learning rate schedule (cosine decay)
-learning_rate = 5e-4
-min_lr = 5e-5
-warmup_iters = 163           # ~2% of total
+learning_rate = 6e-4
+min_lr = 6e-5
+warmup_iters = 152           # ~2% of total
 
 # optimizer
 weight_decay = 1e-1

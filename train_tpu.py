@@ -20,7 +20,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from model import GPTConfig, GPT
 
 # -----------------------------------------------------------------------------
-out_dir = 'out'
+out_dir = '/kaggle/working/gpt2-70m'
 eval_interval = 500
 log_interval = 10
 eval_iters = 200
@@ -31,14 +31,14 @@ init_from = 'scratch'
 save_interval = 500
 keep_best = True
 
-wandb_log = False
+wandb_log = True
 wandb_project = 'gpt2-70m'
 wandb_run_name = 'gpt2-70m-1B-tokens'
 
 dataset = 'data_mix'
 
-gradient_accumulation_steps = 8
-batch_size = 15
+gradient_accumulation_steps = 16
+batch_size = 8
 block_size = 1024
 
 n_layer = 12
@@ -47,17 +47,17 @@ n_embd = 512
 dropout = 0.1
 bias = True
 
-learning_rate = 5e-4
-max_iters = 8113
+learning_rate = 6e-4
+max_iters = 7616
 weight_decay = 1e-1
 beta1 = 0.9
 beta2 = 0.95
 grad_clip = 1.0
 
 decay_lr = True
-warmup_iters = 162
-lr_decay_iters = 8113
-min_lr = 5e-5
+warmup_iters = 152
+lr_decay_iters = 7616
+min_lr = 6e-5
 
 backend = 'gloo'
 
