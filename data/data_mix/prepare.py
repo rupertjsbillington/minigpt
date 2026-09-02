@@ -35,14 +35,15 @@ import tiktoken
 import pyarrow as pa
 import pyarrow.parquet as pq
 from datasets import load_dataset
+from huggingface_hub import scan_cache_dir
 from tqdm import tqdm
 
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-FINE_PDFS_TARGET = 536_870_912
-DCLM_TARGET = 322_122_547
-FINE_WEB_EDU_TARGET = 214_748_365
+FINE_PDFS_TARGET = 500_000_000
+DCLM_TARGET = 300_000_000
+FINE_WEB_EDU_TARGET = 200_000_000
 
 # Approximate token budget per raw Parquet shard.
 RAW_SHARD_TOKEN_LIMIT = 100_000_000
@@ -74,7 +75,7 @@ BIN_SHARD_TOKEN_LIMIT = 100_000_000
 
 # Tokens held out for validation (taken from the head of the already
 # globally-shuffled stream, which is statistically equivalent to the tail).
-VAL_TOKENS = 4_194_304
+VAL_TOKENS = 3_072_000
 
 # tiktoken's Rust core releases the GIL, so threads speed up re-tokenization
 # while pool.map keeps the shuffled stream order deterministic.
@@ -783,8 +784,18 @@ def main():
     finally:
         if temp_dir is not None:
             shutil.rmtree(temp_dir, ignore_errors=True)
-            print("Temporary files cleaned up.")
+        cache_info = scan_cache_dir()
+        revisions_to_delete = []
 
+        for repo in cache_info.repos:
+            if repo.repo_id in {"codelion/finepdfs-1B", "codelion/dclm-baseline-1B", "codelion/fineweb-edu-1B"}:
+                for revision in repo.revisions:
+                    revisions_to_delete.append(revision.commit_hash)
+
+        if revisions_to_delete:
+            delete_strategy = cache_info.delete_revisions(*revisions_to_delete)
+            delete_strategy.execute()
+        print("Temporary files cleaned up.")
 
 if __name__ == "__main__":
     main()
