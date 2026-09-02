@@ -380,7 +380,6 @@ X, Y = get_batch('train')
 t0 = time.time()
 local_iter_num = 0
 raw_model = model.module if ddp else model
-running_mfu = -1.0
 
 try:
     while True:
