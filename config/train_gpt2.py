@@ -22,14 +22,14 @@ batch_size = 4
 block_size = 1024
 gradient_accumulation_steps = 32
 
-# 1B tokens / 131,072 tokens per iter ~= 7,629 iterations
-max_iters = 7629
-lr_decay_iters = 7629
+# 1B tokens / 131,072 tokens per iter = 8,160 iterations
+max_iters = 8160
+lr_decay_iters = 8160
 
 # learning rate schedule (cosine decay)
 learning_rate = 5e-4
 min_lr = 5e-5
-warmup_iters = 152           # ~2% of total
+warmup_iters = 163           # ~2% of total
 
 # optimizer
 weight_decay = 1e-1
@@ -43,7 +43,7 @@ keep_best = True             # keep a non-deleted best.pt on val-loss improvemen
 
 # eval stuff
 eval_interval = 500
-eval_iters = 128
+eval_iters = 512
 log_interval = 1
 
 # system

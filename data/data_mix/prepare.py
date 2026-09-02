@@ -40,9 +40,9 @@ from tqdm import tqdm
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-FINE_PDFS_TARGET = 500_000_000
-DCLM_TARGET = 300_000_000
-FINE_WEB_EDU_TARGET = 200_000_000
+FINE_PDFS_TARGET = 536_870_912
+DCLM_TARGET = 322_122_547
+FINE_WEB_EDU_TARGET = 214_748_365
 
 # Approximate token budget per raw Parquet shard.
 RAW_SHARD_TOKEN_LIMIT = 100_000_000
@@ -74,7 +74,7 @@ BIN_SHARD_TOKEN_LIMIT = 100_000_000
 
 # Tokens held out for validation (taken from the head of the already
 # globally-shuffled stream, which is statistically equivalent to the tail).
-VAL_TOKENS = 1_000_000
+VAL_TOKENS = 4_194_304
 
 # tiktoken's Rust core releases the GIL, so threads speed up re-tokenization
 # while pool.map keeps the shuffled stream order deterministic.
