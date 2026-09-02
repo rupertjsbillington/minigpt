@@ -43,7 +43,7 @@ keep_best = True             # keep a non-deleted best.pt on val-loss improvemen
 
 # eval stuff
 eval_interval = 500
-eval_iters = 200
+eval_iters = 8
 log_interval = 1
 
 # system
