@@ -445,6 +445,9 @@ try:
 
         # graceful shutdown check (after the step + save completed)
         if shutdown_requested:
+            # Ensure the latest checkpoint is saved here if the last step was not a save step
+            if iter_num % save_interval != 0:
+                save_checkpoint(iter_num, best_val_loss)
             print(f"Graceful shutdown complete. Checkpoint saved at step {iter_num}.")
             break
 
